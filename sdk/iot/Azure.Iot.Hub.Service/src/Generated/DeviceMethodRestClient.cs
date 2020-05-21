@@ -41,7 +41,7 @@ namespace Azure.Iot.Hub.Service
             _pipeline = pipeline;
         }
 
-        internal HttpMessage CreateInvokeDeviceMethodRequest(string deviceId, CloudToDeviceMethod directMethodRequest)
+        internal HttpMessage CreateInvokeDeviceMethodRequest(string deviceId, CloudToDeviceMethodRequest directMethodRequest)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -64,7 +64,7 @@ namespace Azure.Iot.Hub.Service
         /// <param name="deviceId"> The String to use. </param>
         /// <param name="directMethodRequest"> The CloudToDeviceMethod to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public async ValueTask<Response<CloudToDeviceMethodResult>> InvokeDeviceMethodAsync(string deviceId, CloudToDeviceMethod directMethodRequest, CancellationToken cancellationToken = default)
+        public async ValueTask<Response<CloudToDeviceMethodResponse>> InvokeDeviceMethodAsync(string deviceId, CloudToDeviceMethodRequest directMethodRequest, CancellationToken cancellationToken = default)
         {
             if (deviceId == null)
             {
@@ -81,7 +81,7 @@ namespace Azure.Iot.Hub.Service
             {
                 case 200:
                     {
-                        CloudToDeviceMethodResult value = default;
+                        CloudToDeviceMethodResponse value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
                         if (document.RootElement.ValueKind == JsonValueKind.Null)
                         {
@@ -89,7 +89,7 @@ namespace Azure.Iot.Hub.Service
                         }
                         else
                         {
-                            value = CloudToDeviceMethodResult.DeserializeCloudToDeviceMethodResult(document.RootElement);
+                            value = CloudToDeviceMethodResponse.DeserializeCloudToDeviceMethodResponse(document.RootElement);
                         }
                         return Response.FromValue(value, message.Response);
                     }
@@ -102,7 +102,7 @@ namespace Azure.Iot.Hub.Service
         /// <param name="deviceId"> The String to use. </param>
         /// <param name="directMethodRequest"> The CloudToDeviceMethod to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public Response<CloudToDeviceMethodResult> InvokeDeviceMethod(string deviceId, CloudToDeviceMethod directMethodRequest, CancellationToken cancellationToken = default)
+        public Response<CloudToDeviceMethodResponse> InvokeDeviceMethod(string deviceId, CloudToDeviceMethodRequest directMethodRequest, CancellationToken cancellationToken = default)
         {
             if (deviceId == null)
             {
@@ -119,7 +119,7 @@ namespace Azure.Iot.Hub.Service
             {
                 case 200:
                     {
-                        CloudToDeviceMethodResult value = default;
+                        CloudToDeviceMethodResponse value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
                         if (document.RootElement.ValueKind == JsonValueKind.Null)
                         {
@@ -127,7 +127,7 @@ namespace Azure.Iot.Hub.Service
                         }
                         else
                         {
-                            value = CloudToDeviceMethodResult.DeserializeCloudToDeviceMethodResult(document.RootElement);
+                            value = CloudToDeviceMethodResponse.DeserializeCloudToDeviceMethodResponse(document.RootElement);
                         }
                         return Response.FromValue(value, message.Response);
                     }
@@ -136,7 +136,7 @@ namespace Azure.Iot.Hub.Service
             }
         }
 
-        internal HttpMessage CreateInvokeModuleMethodRequest(string deviceId, string moduleId, CloudToDeviceMethod directMethodRequest)
+        internal HttpMessage CreateInvokeModuleMethodRequest(string deviceId, string moduleId, CloudToDeviceMethodRequest directMethodRequest)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -162,7 +162,7 @@ namespace Azure.Iot.Hub.Service
         /// <param name="moduleId"> The String to use. </param>
         /// <param name="directMethodRequest"> The CloudToDeviceMethod to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public async ValueTask<Response<CloudToDeviceMethodResult>> InvokeModuleMethodAsync(string deviceId, string moduleId, CloudToDeviceMethod directMethodRequest, CancellationToken cancellationToken = default)
+        public async ValueTask<Response<CloudToDeviceMethodResponse>> InvokeModuleMethodAsync(string deviceId, string moduleId, CloudToDeviceMethodRequest directMethodRequest, CancellationToken cancellationToken = default)
         {
             if (deviceId == null)
             {
@@ -183,7 +183,7 @@ namespace Azure.Iot.Hub.Service
             {
                 case 200:
                     {
-                        CloudToDeviceMethodResult value = default;
+                        CloudToDeviceMethodResponse value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
                         if (document.RootElement.ValueKind == JsonValueKind.Null)
                         {
@@ -191,7 +191,7 @@ namespace Azure.Iot.Hub.Service
                         }
                         else
                         {
-                            value = CloudToDeviceMethodResult.DeserializeCloudToDeviceMethodResult(document.RootElement);
+                            value = CloudToDeviceMethodResponse.DeserializeCloudToDeviceMethodResponse(document.RootElement);
                         }
                         return Response.FromValue(value, message.Response);
                     }
@@ -205,7 +205,7 @@ namespace Azure.Iot.Hub.Service
         /// <param name="moduleId"> The String to use. </param>
         /// <param name="directMethodRequest"> The CloudToDeviceMethod to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public Response<CloudToDeviceMethodResult> InvokeModuleMethod(string deviceId, string moduleId, CloudToDeviceMethod directMethodRequest, CancellationToken cancellationToken = default)
+        public Response<CloudToDeviceMethodResponse> InvokeModuleMethod(string deviceId, string moduleId, CloudToDeviceMethodRequest directMethodRequest, CancellationToken cancellationToken = default)
         {
             if (deviceId == null)
             {
@@ -226,7 +226,7 @@ namespace Azure.Iot.Hub.Service
             {
                 case 200:
                     {
-                        CloudToDeviceMethodResult value = default;
+                        CloudToDeviceMethodResponse value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
                         if (document.RootElement.ValueKind == JsonValueKind.Null)
                         {
@@ -234,7 +234,7 @@ namespace Azure.Iot.Hub.Service
                         }
                         else
                         {
-                            value = CloudToDeviceMethodResult.DeserializeCloudToDeviceMethodResult(document.RootElement);
+                            value = CloudToDeviceMethodResponse.DeserializeCloudToDeviceMethodResponse(document.RootElement);
                         }
                         return Response.FromValue(value, message.Response);
                     }
