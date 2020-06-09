@@ -298,7 +298,7 @@ namespace Azure.Iot.Hub.Service
         /// <summary> Create, update, or delete the identiies of multiple devices from the IoT hub identity registry. A device identity can be specified only once in the list. Different operations (create, update, delete) on different devices are allowed. A maximum of 100 devices can be specified per invocation. For large scale operations, consider using the import feature using blob storage(https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities). For IoT Hub VNET related features(https://docs.microsoft.com/en-us/azure/iot-hub/virtual-network-support) please use API version &apos;2020-03-13&apos;.These features are currently in general availability in the East US, West US 2, and Southcentral US regions only. We are actively working to expand the availability of these features to all regions by end of month May. For rest of the APIs please continue using API version &apos;2019-10-01&apos;. </summary>
         /// <param name="devices"> The ArrayOfExportImportDevice to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public async ValueTask<Response<BulkRegistryOperationResult>> BulkDeviceCrudAsync(IEnumerable<ExportImportDevice> devices, CancellationToken cancellationToken = default)
+        public async Task<Response<BulkRegistryOperationResponse>> BulkDeviceCrudAsync(IEnumerable<ExportImportDevice> devices, CancellationToken cancellationToken = default)
         {
             if (devices == null)
             {
@@ -312,7 +312,7 @@ namespace Azure.Iot.Hub.Service
                 case 200:
                 case 400:
                     {
-                        BulkRegistryOperationResult value = default;
+                        BulkRegistryOperationResponse value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
                         if (document.RootElement.ValueKind == JsonValueKind.Null)
                         {
@@ -320,7 +320,7 @@ namespace Azure.Iot.Hub.Service
                         }
                         else
                         {
-                            value = BulkRegistryOperationResult.DeserializeBulkRegistryOperationResult(document.RootElement);
+                            value = BulkRegistryOperationResponse.DeserializeBulkRegistryOperationResponse(document.RootElement);
                         }
                         return Response.FromValue(value, message.Response);
                     }
@@ -332,7 +332,7 @@ namespace Azure.Iot.Hub.Service
         /// <summary> Create, update, or delete the identiies of multiple devices from the IoT hub identity registry. A device identity can be specified only once in the list. Different operations (create, update, delete) on different devices are allowed. A maximum of 100 devices can be specified per invocation. For large scale operations, consider using the import feature using blob storage(https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities). For IoT Hub VNET related features(https://docs.microsoft.com/en-us/azure/iot-hub/virtual-network-support) please use API version &apos;2020-03-13&apos;.These features are currently in general availability in the East US, West US 2, and Southcentral US regions only. We are actively working to expand the availability of these features to all regions by end of month May. For rest of the APIs please continue using API version &apos;2019-10-01&apos;. </summary>
         /// <param name="devices"> The ArrayOfExportImportDevice to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public Response<BulkRegistryOperationResult> BulkDeviceCrud(IEnumerable<ExportImportDevice> devices, CancellationToken cancellationToken = default)
+        public Response<BulkRegistryOperationResponse> BulkDeviceCrud(IEnumerable<ExportImportDevice> devices, CancellationToken cancellationToken = default)
         {
             if (devices == null)
             {
@@ -346,7 +346,7 @@ namespace Azure.Iot.Hub.Service
                 case 200:
                 case 400:
                     {
-                        BulkRegistryOperationResult value = default;
+                        BulkRegistryOperationResponse value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
                         if (document.RootElement.ValueKind == JsonValueKind.Null)
                         {
@@ -354,7 +354,7 @@ namespace Azure.Iot.Hub.Service
                         }
                         else
                         {
-                            value = BulkRegistryOperationResult.DeserializeBulkRegistryOperationResult(document.RootElement);
+                            value = BulkRegistryOperationResponse.DeserializeBulkRegistryOperationResponse(document.RootElement);
                         }
                         return Response.FromValue(value, message.Response);
                     }
