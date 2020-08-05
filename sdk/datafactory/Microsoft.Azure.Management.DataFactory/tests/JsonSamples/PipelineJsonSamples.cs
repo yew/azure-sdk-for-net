@@ -4684,8 +4684,9 @@ namespace DataFactory.Tests.JsonSamples
               ""recursive"": true,
               ""enablePartitionDiscovery"": true,
               ""wildcardFolderPath"": ""A*"",
-              ""modifiedDatetimeStart"":  ""2019-07-02T00:00:00.000Z"",
-              ""modifiedDatetimeEnd"":  ""2019-07-03T00:00:00.000Z""
+              ""modifiedDatetimeStart"": ""2019-07-02T00:00:00.000Z"",
+              ""modifiedDatetimeEnd"": ""2019-07-03T00:00:00.000Z"",
+              ""deleteFilesAfterCompletion"": true
             },
             ""formatSettings"": {
               ""type"": ""DelimitedTextReadSettings"",
