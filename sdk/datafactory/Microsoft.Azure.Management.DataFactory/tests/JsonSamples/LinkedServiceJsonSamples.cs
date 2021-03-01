@@ -820,6 +820,20 @@ namespace DataFactory.Tests.JsonSamples
                 value : ""fakepassword"",
                 type : ""SecureString""
             },
+            authHeaders: {
+                customHeader1: {
+                    type: ""SecureString"",
+                    value: ""testheader""
+                },
+                customHeader2: {
+                    type: ""AzureKeyVaultSecret"",
+                    store: {
+                        referenceName: ""testAzureKeyVault"",
+                        type: ""LinkedServiceReference""
+                    },
+                    secretName: ""testSecretName""
+                }
+            },
             azureCloudType: ""AzurePublic""
         }
     }
@@ -1463,6 +1477,20 @@ namespace DataFactory.Tests.JsonSamples
             password : {
                 value : ""fakePassword"",
                 type : ""SecureString""
+            },
+            authHeaders: {
+                customHeader1: {
+                    type: ""SecureString"",
+                    value: ""testheader""
+                },
+                customHeader2: {
+                    type: ""AzureKeyVaultSecret"",
+                    store: {
+                        referenceName: ""testAzureKeyVault"",
+                        type: ""LinkedServiceReference""
+                    },
+                    secretName: ""testSecretName""
+                }
             }
         }
     }
@@ -1505,6 +1533,35 @@ namespace DataFactory.Tests.JsonSamples
             password : {
                 value : ""fakePassword"",
                 type : ""SecureString""
+            }
+        }
+    }
+}";
+
+        [JsonSample]
+        public const string SftpServerLinkedService_MultiFactor = @"
+{
+    name: ""SftpServerLinkedService"",
+    properties:
+    {
+        type: ""Sftp"",
+        description: ""test description"",
+        typeProperties:
+        {
+            host : ""fakeHost"",
+            authenticationType : ""MultiFactor"",
+            userName : ""fakeName"",
+            password : {
+                value : ""fakePassword"",
+                type : ""SecureString""
+            },
+            privateKeyContent: {
+                type: ""SecureString"",
+                value: ""test""
+            },
+            passPhrase: {
+                type: ""SecureString"",
+                value: ""test""
             }
         }
     }
@@ -2813,6 +2870,20 @@ namespace DataFactory.Tests.JsonSamples
             ""password"": {
                 ""type"": ""SecureString"",
                 ""value"": ""fakepsw""
+            },
+            authHeaders: {
+                customHeader1: {
+                    type: ""SecureString"",
+                    value: ""testheader""
+                },
+                customHeader2: {
+                    type: ""AzureKeyVaultSecret"",
+                    store: {
+                        referenceName: ""testAzureKeyVault"",
+                        type: ""LinkedServiceReference""
+                    },
+                    secretName: ""testSecretName""
+                }
             },
             ""azureCloudType"": ""AzurePublic""
         }
