@@ -1998,6 +1998,60 @@ namespace DataFactory.Tests.JsonSamples
 }";
 
         [JsonSample]
+        public const string AmazonS3CompatibleDataset = @"
+{
+    name: ""AmazonS3CompatibleWithTextDataset"",
+    properties:
+    {
+        type: ""DelimitedText"",
+        linkedServiceName: 
+        {  
+            referenceName : ""ls"",
+            type : ""LinkedServiceReference""
+        },
+        typeProperties:
+        {
+            ""location"": {
+                ""type"": ""AmazonS3CompatibleLocation"",
+                ""bucketName"": ""bucketname"",
+                ""folderPath"": ""folder/subfolder""
+            },
+            ""columnDelimiter"": "","",
+            ""quoteChar"": ""\"""",
+            ""firstRowAsHeader"": true,
+            ""compressionCodec"": ""gzip""
+        },
+    }
+}";
+
+        [JsonSample]
+        public const string OracleCloudStorageDataset = @"
+{
+    name: ""OracleCloudStorageWithTextDataset"",
+    properties:
+    {
+        type: ""DelimitedText"",
+        linkedServiceName: 
+        {  
+            referenceName : ""ls"",
+            type : ""LinkedServiceReference""
+        },
+        typeProperties:
+        {
+            ""location"": {
+                ""type"": ""OracleCloudStorageLocation"",
+                ""bucketName"": ""bucketname"",
+                ""folderPath"": ""folder/subfolder""
+            },
+            ""columnDelimiter"": "","",
+            ""quoteChar"": ""\"""",
+            ""firstRowAsHeader"": true,
+            ""compressionCodec"": ""gzip""
+        },
+    }
+}";
+
+        [JsonSample]
         public const string GoogleCloudStorageDataset = @"
 {
     name: ""GoogleCloudStorageWithTextDataset"",

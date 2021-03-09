@@ -2981,6 +2981,45 @@ namespace DataFactory.Tests.JsonSamples
 }";
 
         [JsonSample]
+        public const string AmazonS3CompatibleLinkedService = @"
+{
+    name: ""AmazonS3CompatibleLinkedService"",
+    properties:
+    {
+        type: ""AmazonS3Compatible"",
+        description: ""test description"",
+        typeProperties:
+        {
+            accessKeyId : ""fakeaccess"",
+            secretAccessKey : {
+                value : ""fakeKey"",
+                type : ""SecureString""
+            },
+            forcePathStyle: true
+        }
+    }
+}";
+
+        [JsonSample]
+        public const string OracleCloudStorageLinkedService = @"
+{
+    name: ""OracleCloudStorageLinkedService"",
+    properties:
+    {
+        type: ""OracleCloudStorage"",
+        description: ""test description"",
+        typeProperties:
+        {
+            accessKeyId : ""fakeaccess"",
+            secretAccessKey : {
+                value : ""fakeKey"",
+                type : ""SecureString""
+            }
+        }
+    }
+}";
+
+        [JsonSample]
         public const string GoogleCloudStorageLinkedService = @"
 {
     name: ""GoogleCloudStorageLinkedService"",
